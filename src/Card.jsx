@@ -10,17 +10,19 @@ const Card = ({
 }) => (
   <div className="card">
     {canMoveLeft && <button onClick={onMoveLeft} type="button">{'<'}</button>}
-    <span className="title">{card.name}</span>
+    <span className="title">{card.cardName}</span>
     {canMoveRight && <button onClick={onMoveRight} type="button">{'>'}</button>}
   </div>
 );
 
 Card.propTypes = {
-  card: PropTypes.string.isRequired,
-  canMoveRight: PropTypes.string.isRequired,
-  canMoveLeft: PropTypes.string.isRequired,
-  onMoveRight: PropTypes.string.isRequired,
-  onMoveLeft: PropTypes.string.isRequired,
+  card: PropTypes.shape({
+    cardName: PropTypes.string,
+  }).isRequired,
+  canMoveRight: PropTypes.bool.isRequired,
+  canMoveLeft: PropTypes.bool.isRequired,
+  onMoveRight: PropTypes.func.isRequired,
+  onMoveLeft: PropTypes.func.isRequired,
 };
 
 export default Card;

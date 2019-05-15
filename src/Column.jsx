@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 
 const Column = ({
+  columnsNum,
   column,
   columnIndex,
   onMoveRight,
@@ -10,14 +11,14 @@ const Column = ({
   onAddCard,
 }) => (
   <div className="column">
-    <h3>{column.name}</h3>
+    <h3>{column.columnName}</h3>
     {column.cards.map((card, cardIndex) => (
       <Card
         key={card.id}
         card={card}
         cardIndex={cardIndex}
         canMoveLeft={columnIndex !== 0}
-        canMoveRight={columnIndex !== 2}
+        canMoveRight={columnsNum - 1 > columnIndex}
         onMoveLeft={() => onMoveLeft(cardIndex)}
         onMoveRight={() => onMoveRight(cardIndex)}
       />
@@ -27,11 +28,14 @@ const Column = ({
 );
 
 Column.propTypes = {
-  column: PropTypes.string.isRequired,
-  columnIndex: PropTypes.string.isRequired,
-  onMoveRight: PropTypes.string.isRequired,
-  onMoveLeft: PropTypes.string.isRequired,
-  onAddCard: PropTypes.string.isRequired,
+  columnsNum: PropTypes.number.isRequired,
+  column: PropTypes.shape({
+    columnName: PropTypes.string,
+  }).isRequired,
+  columnIndex: PropTypes.number.isRequired,
+  onMoveRight: PropTypes.func.isRequired,
+  onMoveLeft: PropTypes.func.isRequired,
+  onAddCard: PropTypes.func.isRequired,
 };
 
 export default Column;
