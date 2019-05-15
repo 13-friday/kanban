@@ -23,7 +23,7 @@ const Column = ({
         onMoveRight={() => onMoveRight(cardIndex)}
       />
     ))}
-    <button onClick={onAddCard} type="button">+</button>
+    <button onClick={onAddCard} type="button" className="card-add__btn">+</button>
   </div>
 );
 
